@@ -36,7 +36,7 @@ class User extends CI_Controller {
 	}
 
 	private function loginScreen() {
-		//$this->load->view('common/header');
+		$this->load->view('header');
 		$this->load->view('user/loginscreen');
 		//$this->load->view('common/footer');
 		
@@ -62,6 +62,10 @@ class User extends CI_Controller {
 			$this->loginScreen();
 		}
 
+	}
+	
+	public function logout() {
+		
 	}
 }
 ?>
