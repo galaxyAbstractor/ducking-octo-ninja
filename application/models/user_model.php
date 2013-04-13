@@ -17,11 +17,11 @@ class User_model extends CI_Model {
 	}
 	
 	public function addUser($userdata) {
-		$query = $this->db->query("SELECT username FROM Users WHERE username = '$userdata[username]'");
+		$query = $this->db->query("SELECT username FROM users WHERE username = '$userdata[username]'");
 		if($query->num_rows() > 0) {
 			return false;
 		} else {
-			$this->db->insert('Users', $userdata);
+			$this->db->insert('users', $userdata);
 			return true;
 		}
 	}
