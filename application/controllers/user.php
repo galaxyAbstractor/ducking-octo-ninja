@@ -15,11 +15,7 @@ class User extends CI_Controller {
 		}
 	}
 
-<<<<<<< HEAD
-	private function register() {
-=======
 	public function register() {
->>>>>>> 7fd6ba775c40af50e2ce7d8a18238789bfc6961e
 		if($this->input->post("submit")){
 			$userdata = array(
 				'username'	=> $this->input->post("username"),
