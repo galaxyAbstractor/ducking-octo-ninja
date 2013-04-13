@@ -11,4 +11,4 @@ echo form_close();
 
 
 ?>
-<a href="<?php echo base_url() ?>user/register" class="btn btn-primary">Register</a>
+<a href="<?php echo base_url() ?>user/register" id="registerbutton" class="btn btn-primary">Register</a>

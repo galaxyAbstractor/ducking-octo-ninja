@@ -35,8 +35,8 @@ class User extends CI_Controller {
 				// Retry
 			}
 		} else {
-			$this->load->view("header");
-			$this->load->view("user/register", array('userinfo' => $this->load->view("user/loginpanel","", true)));
+
+			$this->load->view("user/register");
 		}
 		
 		
