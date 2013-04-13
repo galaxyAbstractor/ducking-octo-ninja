@@ -1,0 +1,57 @@
+body {
+	background-color: #092E45;
+}
+
+#header {
+	position: relative;
+	top: 25px;
+	color: #fff;
+	font-family: 'Open Sans', sans-serif;
+}
+
+#mainpage {
+	position: relative;
+	top:40px;
+	padding: 10px;
+	background-color: #19537A;
+	border: 1px solid #266384;
+	-webkit-box-shadow: 0px 0px 25px 5px rgba(0, 0, 0, .5);
+	-moz-box-shadow: 0px 0px 25px 5px rgba(0, 0, 0, .5);
+	box-shadow: 0px 0px 25px 5px rgba(0, 0, 0, .5); 
+}
+
+#content {
+
+	min-height: 400px;
+	background-color: #eee;
+	border: 1px solid #fff;
+	
+}
+
+#innercontent {
+	background-color: #ade;
+	min-height: 400px;
+}
+
+#userinfo {
+	background-color: #daa;
+	min-height: 400px;
+}
+
+#userinfo input {
+	width: 120px;
+}
+
+#profilepic {
+	height: 100px;
+	width: 100px;
+	border: 1px solid #aaa;
+	background-color: #ccc;
+	margin: 0 auto;
+	margin-top:15px;
+}
+
+#profilename {
+	margin-top: 5px;
+	font-weight: bold;
+}
