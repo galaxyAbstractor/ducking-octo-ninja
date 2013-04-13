@@ -15,8 +15,8 @@ class User extends CI_Controller {
 		}
 	}
 
-	private function register() {
-		if($this->input->post("submit")){}
+	public function register() {
+		if($this->input->post("submit")){
 			$userdata = array(
 				'username'	=> $this->input->post("username"),
 				'password'	=> $this->input->post("password"),
@@ -36,14 +36,14 @@ class User extends CI_Controller {
 			}
 		} else {
 			$this->load->view("header");
-			$this->load->view("register", array('userinfo' => $this->load->view("login","", true)));
+			$this->load->view("user/register", array('userinfo' => $this->load->view("user/loginpanel","", true)));
 		}
 		
 		
 	}
 
 	private function loginScreen() {
-		$this->load->view('user/loginscreen');
+		#$this->load->view('user/loginscreen');
 		
 	}
 	
