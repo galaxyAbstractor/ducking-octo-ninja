@@ -45,7 +45,7 @@ class User extends CI_Controller {
 	}
 
 	public function login() {
-		if($this->input->post('submit')) {
+		if(isset($this->input->post('submit'))) {
 			$username = $this->input->post('username');
 			$password = $this->input->post('password');
 			
