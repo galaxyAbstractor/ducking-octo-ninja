@@ -36,30 +36,28 @@ class User extends CI_Controller {
 	}
 
 	private function loginScreen() {
-		$this->load->view('header');
 		$this->load->view('user/loginscreen');
-		//$this->load->view('common/footer');
 		
 	}
 	
 	private function userIsLoggedIn() {
-		//$this->load->view('common/header');
 		$this->load->view('user/loggedin');
-		//$this->load->view('common/footer');
 	}
 
 	public function login() {
-		$username = $this->input->post('username');
-		$password = $this->input->post('password');
-
-		//TODO: Encrypt password
-
-		$result = $this->user_model->doLogin($username, $password);
-		
-		if($result) {
-			$this->userIsLoggedIn();
-		} else {
-			$this->loginScreen();
+		if($this->input->post('submit')) {
+			$username = $this->input->post('username');
+			$password = $this->input->post('password');
+			
+			//TODO: Encrypt password
+			
+			$result = $this->user_model->doLogin($username, $password);
+			
+			if($result) {
+				$this->userIsLoggedIn();
+			} else {
+				$this->loginScreen();
+			}
 		}
 
 	}
