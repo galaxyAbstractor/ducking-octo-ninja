@@ -15,24 +15,31 @@ class User extends CI_Controller {
 		}
 	}
 
-	private function registerNewUser() {
-		$userdata = array(
-			'username'	=> $this->input->post("username"),
-			'password'	=> $this->input->post("password"),
-			'email'		=> $this->input->post("email"),
-			'city'		=> $this->input->post("city"),
-			'country'	=> $this->input->post("country"),
-			'birthdate'	=> $this->input->post("birthdate")
-		);
-		
-		$request = $this->user_model->adduser($userdata);
-		
-		if($request) {
-			$this->userIsLoggedIn();
+	private function register() {
+		if($this->input->post("submit")){}
+			$userdata = array(
+				'username'	=> $this->input->post("username"),
+				'password'	=> $this->input->post("password"),
+				'email'		=> $this->input->post("email"),
+				'city'		=> $this->input->post("city"),
+				'country'	=> $this->input->post("country"),
+				'birthdate'	=> $this->input->post("birthdate")
+			);
+			
+			$request = $this->user_model->adduser($userdata);
+
+			if($request) {
+				$this->userIsLoggedIn();
+			} else {
+				// Username already taken
+				// Retry
+			}
 		} else {
-			// Username already taken
-			// Retry
+			$this->load->view("header");
+			$this->load->view("register", array('userinfo' => $this->load->view("login","", true)));
 		}
+		
+		
 	}
 
 	private function loginScreen() {
