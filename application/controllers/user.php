@@ -35,11 +35,11 @@ class User extends CI_Controller {
 				// Retry
 			}
 		} else {
-
-			$this->load->view("user/register");
+			$this->load->view("header");
+			//$this->load->view("menu");
+			$this->load->view("user/register", array('userinfo' => $this->load->view("user/loginpanel","", true)));
+		
 		}
-		
-		
 	}
 
 	private function loginScreen() {
