@@ -11,7 +11,7 @@ class User extends CI_Controller {
 		if($this->session->userdata('username') != "") {
 			$this->userIsLoggedIn();
 		} else {
-			$this->loginScreen();
+			redirect(base_url());
 		}
 	}
 
@@ -36,19 +36,16 @@ class User extends CI_Controller {
 			}
 		} else {
 			$this->load->view("header");
-			//$this->load->view("menu");
+
+			$this->load->view("menu");
+
 			$this->load->view("user/register", array('userinfo' => $this->load->view("user/loginpanel","", true)));
 		
 		}
 	}
-
-	private function loginScreen() {
-		#$this->load->view('user/loginscreen');
-		
-	}
 	
 	private function userIsLoggedIn() {
-		$this->load->view('user/loggedin');
+		redirect(base_url());
 	}
 
 	public function login() {
