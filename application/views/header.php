@@ -6,7 +6,9 @@
 	<link href="<?php echo base_url()?>css/bootstrap-responsive.min.css" rel="stylesheet" type="text/css"/>
 	<link href="<?php echo base_url()?>css/style.css" rel="stylesheet" type="text/css">
 	<script src="<?php echo base_url();?>js/jquery-1.8.0.min.js" type="text/javascript"></script>
+	<script src="<?php echo base_url();?>js/ckeditor/ckeditor.js" type="text/javascript"></script>
 	<script src="<?php echo base_url();?>js/scripts.js" type="text/javascript"></script>
+
 	
 </head>
 

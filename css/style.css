@@ -22,20 +22,16 @@ body {
 
 #content {
 
-	min-height: 400px;
 	background-color: #eee;
 	border: 1px solid #fff;
 	
 }
 
 #innercontent {
-	background-color: #ade;
 	min-height: 400px;
 }
 
 #userinfo {
-	background-color: #daa;
-	min-height: 400px;
 }
 
 #userinfo input {
