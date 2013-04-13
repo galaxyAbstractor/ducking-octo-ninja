@@ -36,11 +36,16 @@ class User extends CI_Controller {
 	}
 
 	private function loginScreen() {
+		//$this->load->view('common/header');
+		$this->load->view('user/loginscreen');
+		//$this->load->view('common/footer');
 		
 	}
 	
 	private function userIsLoggedIn() {
-
+		//$this->load->view('common/header');
+		$this->load->view('user/loggedin');
+		//$this->load->view('common/footer');
 	}
 
 	public function login() {
