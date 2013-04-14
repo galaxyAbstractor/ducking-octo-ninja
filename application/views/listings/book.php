@@ -12,7 +12,7 @@
                                                                     echo form_textarea(array('name' => 'message', 'required' => 'required',  'class' => 'ckeditor', 'id' => 'ckeditor'));
                                                                     echo form_hidden("aid", $aid);
                                                                     echo "<br>";
-                                                                    echo form_submit(array('name' => 'submit', 'value' => 'Register', "class" => "btn btn-primary"));
+                                                                    echo form_submit(array('name' => 'submit', 'value' => 'Send message', "class" => "btn btn-primary"));
                                                                     echo form_close();
  
  

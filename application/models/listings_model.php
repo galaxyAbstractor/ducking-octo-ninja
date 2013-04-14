@@ -8,7 +8,7 @@ class Listings_model extends CI_Model {
 	}
 	
 
-	public function addListing($subject) {
+	public function addListing($subject, $text) {
 		if($this->session->userdata('logged_in')) {
 			$user = $this->session->userdata('username');
 			//$query = $this->db->query("SELECT id FROM users WHERE username = '$user'");
@@ -22,7 +22,8 @@ class Listings_model extends CI_Model {
 			
 			$listingdata = array(
 					'user'					=>	$q,
-					'conversationSubject'	=>	$subject
+					'conversationSubject'	=>	$subject,
+					'text'					=>	$text
 			);
 			
 			$this->db->insert('available', $listingdata);
@@ -36,13 +37,13 @@ class Listings_model extends CI_Model {
 
 	function getListings($id = null) {
 		if($id == null){
-			$this->db->select("available.id AS aid, username, conversationSubject", false);
+			$this->db->select("available.id AS aid, username, conversationSubject, text", false);
 			$this->db->from("available");
 			$this->db->join("users", "users.ID = available.user");
 			$query = $this->db->get();
 			return $query->result();
 		} else {
-			$this->db->select("available.id AS aid, username, conversationSubject", false);
+			$this->db->select("available.id AS aid, username, conversationSubject, text", false);
 			$this->db->from("available");
 			$this->db->join("users", "users.ID = available.user");
 			$this->db->where("available.id", $id);

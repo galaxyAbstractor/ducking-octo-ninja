@@ -27,6 +27,7 @@ class Listings extends CI_Controller {
 			$this->load->view("listings/show", array('userinfo' => $this->load->view("user/loginpanel","", true), 'listings' => $listings));
 		} else {
 			$listings = $this->listings_model->getListings($id);
+			
 			$this->load->view("listings/show", array('userinfo' => $this->load->view("user/userpanel",array("username" => $this->session->userdata('username')), true), 'listings' => $listings));
 		}
 	}
@@ -42,12 +43,14 @@ class Listings extends CI_Controller {
 	}
 	
 	public function doAdd() {
-		$subject = $this->input->post('subject');
-
+		$subject = 	$this->input->post('subject');
+		$text = 	$this->input->post('message');
+		
+		
 		if($this->session->userdata('logged_in')) {
-			$query = $this->listings_model->addListing($subject);
+			$query = $this->listings_model->addListing($subject, $text);
 		}
-		redirect(base_url().'/listings/addlisting/');
+		redirect(base_url().'/listings/my/');
 	}
 
 	public function book($aid = null) {
@@ -80,7 +83,7 @@ class Listings extends CI_Controller {
 			redirect(base_url());
 		} else {
 			$this->listings_model->delete($id);
-			redirect(base_url());
+			redirect(base_url().'listings/my');
 		}
 
 	}

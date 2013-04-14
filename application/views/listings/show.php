@@ -14,6 +14,9 @@
                                                                         <h2><?php echo $item->username ?></h2>
                                                                          <?php echo $item->conversationSubject ?>
                                                                          <br>
+                                                                         
+                                                                         <?php echo $item->text ?>
+                                                                         
                                                                          <a href="<?php echo base_url()?>listings/book/<?php echo $item->aid?>" class="btn btn-primary">Book appointment</a>
                                                                         <?php endforeach;?>
                                                            

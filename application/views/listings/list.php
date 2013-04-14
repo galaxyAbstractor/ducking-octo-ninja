@@ -7,6 +7,7 @@
                                                 <div class="row">
                                                         <div class="span10" id="innercontent">
                                                                 <table  class="table table-striped">
+                                                                <h2>All available listings</h2>
                                                                 <thead>
                                                                         <tr>
                                                                                 <th>User</th>
