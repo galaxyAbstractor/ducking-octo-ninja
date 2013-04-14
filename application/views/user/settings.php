@@ -17,7 +17,7 @@
 	                                                              	<?php echo form_label('City', 'city'); ?>
 	                                                                <?php echo form_input(array('name' => 'city','value' => $settings['city'], 'required' => 'required')); ?>
 	                                                              	<?php echo form_label('Country', 'country'); ?>
-	                                                                <?php echo form_input(array('name' => 'city','value' => $settings['country'], 'required' => 'required')); ?>
+	                                                                <?php echo form_input(array('name' => 'country','value' => $settings['country'], 'required' => 'required')); ?>
 	                                                                <?php echo form_label('Birthday', 'birthdate'); ?>
 	                                                                <?php echo form_input(array('name' => 'birthdate','value' => $settings['birthdate'], 'required' => 'required')); ?>
 	                                                                <br>

@@ -14,6 +14,7 @@ class Usersettings extends CI_Controller {
 		if($this->session->userdata('logged_in')){
 			$settings = $this->usersettings_model->get();
 			$settings = $settings[0];
+			
 			$this->load->view("user/settings", 
 					array(
 							'userinfo' => $this->load->view("user/userpanel",array("username" => $this->session->userdata('username')), true), 
@@ -24,9 +25,19 @@ class Usersettings extends CI_Controller {
 	}
 	
 	
-	function setUserData() {
+	function update() {
 		if($this->session->userdata('logged_in')){
-				
+			$user = $this->session->userdata('username');
+			$data = array(
+					'username' => $this->input->post('username'),
+					'email' => $this->input->post('email'),
+					'city' => $this->input->post('city'),
+					'country' => $this->input->post('country'),
+					'birthdate' => $this->input->post('birthdate')
+					
+			);
+			$this->usersettings_model->update($data, $user);
+			redirect(base_url().'usersettings');
 		}
 	}
 	

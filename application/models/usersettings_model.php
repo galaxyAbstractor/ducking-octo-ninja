@@ -7,8 +7,12 @@ class Usersettings_model extends CI_Model {
 		$this->load->database();
 	}
 	
-	function update() {
-		$user = $this->session->userdata('username');
+	function update($data, $user) {
+
+		$this->session->set_userdata('username', $data['username']);
+
+		$this->db->where('username', $user);
+		$this->db->update('users', $data);
 		
 	}
 	
