@@ -19,7 +19,7 @@
                                                                             <div class="row">
                                                                             <div class="span2">
                                                                                 <div class="messagepic">
-                                                                                    
+                                                             							<img src='<?php echo base_url().$item->avatar; ?>'>
                                                                                     </div>
                                                                                     <div class="messagename">
                                                                                         <?php echo $item->author ?>

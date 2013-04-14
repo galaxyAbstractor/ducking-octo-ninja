@@ -35,7 +35,8 @@ class Message_model extends CI_Model {
 	}
 
 	function getMessage($mid) {
-		$this->db->select("fromu.username AS author, tou.username AS touser, available.conversationSubject, content, mid, messages.date, available.id AS aid", false);
+
+		$this->db->select("fromu.username AS author, tou.username AS touser, available.conversationSubject, content, mid, messages.date, available.id AS aid, fromu.avatar", false);
 		$this->db->from("messages");
 		$this->db->join("available", "available.id = messages.aid");
 		$this->db->join("messages_users", "messages.id = messages_users.mid");
@@ -55,7 +56,8 @@ class Message_model extends CI_Model {
 			$this->db->update("messages_users", $nd);
 			$parent = $row->mid;
 			while(true) {
-				$this->db->select("fromu.username AS author, tou.username AS touser, available.conversationSubject, content, mid, messages.date, available.id AS aid", false);
+				$this->db->select("fromu.username AS author, tou.username AS touser, available.conversationSubject, content, mid, messages.date, available.id AS aid, fromu.avatar", false);
+
 				$this->db->from("messages");
 				$this->db->join("available", "available.id = messages.aid");
 				$this->db->join("messages_users", "messages.id = messages_users.mid");
@@ -82,7 +84,7 @@ class Message_model extends CI_Model {
 			}
 
 		}
-
+		var_dump($messages);
 		return $messages;
 	}
 
