@@ -12,7 +12,7 @@
                                                                 echo form_label('Subject', 'subject');
                                                                 echo form_input(array('name' => 'subject', 'required' => 'required'));
                                                                 echo form_label('Message', 'message');
-                                                                echo form_textarea(array('name' => 'message', 'required' => 'required',  'class' => 'ckeditor', 'id' => 'ckeditor'));
+                                                                echo form_textarea(array('name' => 'message',  'class' => 'ckeditor', 'id' => 'ckeditor'));
                                                                 echo "<br>";
                                                                 echo form_submit(array('name' => 'submit', 'value' => 'Send', "class" => "btn btn-primary"));
                                                                 echo form_close();

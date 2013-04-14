@@ -60,3 +60,7 @@ tr {
    cursor: pointer;
 
 }
+
+.btn {
+	margin-bottom: 5px;
+}

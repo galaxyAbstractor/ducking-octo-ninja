@@ -50,6 +50,24 @@ class Listings_model extends CI_Model {
 			return $query->result();
 		}
 	}
+
+	function getUserListings($id) {
+	
+		$this->db->select("available.id AS aid, username, conversationSubject", false);
+		$this->db->from("available");
+		$this->db->join("users", "users.ID = available.user");
+		$this->db->where("available.user", $id);
+		$query = $this->db->get();
+		return $query->result();
+		
+	}
+
+	function delete($id){
+		$query = $this->db->query("SELECT * FROM available WHERE id = '$id' AND user = '".$this->session->userdata('uid')."'");
+		if ($query->num_rows() > 0) {
+			$this->db->delete('available', array('id' => $id)); 
+		}
+	}
 }
 
 ?>

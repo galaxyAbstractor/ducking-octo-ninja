@@ -8,10 +8,13 @@ class User_model extends CI_Model {
 	}
 	
 	public function doLogin($username, $password) {
+
 		$query = $this->db->query("SELECT * FROM users WHERE username = '$username' AND password = '$password'");
 		if ($query->num_rows() > 0) {
+			$row = $query->row();
 			$logindata = array(
 				'username'  => $username,
+				'uid' => $row->id,
 				'logged_in' => TRUE
 				);
 

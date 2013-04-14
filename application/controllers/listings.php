@@ -35,7 +35,7 @@ class Listings extends CI_Controller {
 		$this->load->view("header");
 		$this->load->view("menu");
 		if(!$this->session->userdata('logged_in')) {
-			redirect(base_url().'/');
+			redirect(base_url());
 		} else {
 			$this->load->view("listings/addlistings", array('userinfo' => $this->load->view("user/userpanel",array("username" => $this->session->userdata('username')), true)));
 		}
@@ -61,6 +61,28 @@ class Listings extends CI_Controller {
 				$this->load->view("listings/book", array('userinfo' => $this->load->view("user/userpanel",array("username" => $this->session->userdata('username')), true), "aid" => $aid));
 			}
 		}
+	}
+
+	public function my(){
+		$this->load->view("header");
+		$this->load->view("menu");
+		if(!$this->session->userdata('logged_in')){
+			redirect(base_url());
+		} else {
+
+			$listings = $this->listings_model->getUserListings($this->session->userdata('uid'));
+			$this->load->view("listings/mylist", array('userinfo' => $this->load->view("user/userpanel",array("username" => $this->session->userdata('username')), true), 'listings' => $listings));
+		}
+	}
+
+	public function delete($id){
+		if(!$this->session->userdata('logged_in')){
+			redirect(base_url());
+		} else {
+			$this->listings_model->delete($id);
+			redirect(base_url());
+		}
+
 	}
 }
 ?>

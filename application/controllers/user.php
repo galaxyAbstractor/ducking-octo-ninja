@@ -71,5 +71,6 @@ class User extends CI_Controller {
 		redirect(base_url());
 		
 	}
+
 }
 ?>
