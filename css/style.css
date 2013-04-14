@@ -57,6 +57,13 @@ img {
 	margin-top:15px;
 }
 
+#listingpic {
+	height: 100px;
+	width: 100px;
+	border: 1px solid #aaa;
+	background-color: #ccc;
+}
+
 #profilename {
 	margin-top: 5px;
 	font-weight: bold;

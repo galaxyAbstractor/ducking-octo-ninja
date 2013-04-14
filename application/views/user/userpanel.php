@@ -1,10 +1,15 @@
 <div id="profilepic">
-<img src='<?php echo $profilepic ?>'>
+<img src='<?php 
+			$pic = $this->session->userdata('avatar');
+			echo $pic;
+			
+			?>'>
 </div>
 <div id="profilename">
 	<?php echo $username ?>
 </div>
-
+<br>
+<br>
 <a href="<?php echo base_url() ?>listings/addlisting" class="btn btn-primary">Add listing</a>
 <br>
 

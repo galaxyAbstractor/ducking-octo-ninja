@@ -8,7 +8,7 @@ class User extends CI_Controller {
 	}
 
 	public function index() {
-		if($this->session->userdata('username') != "") {
+		if($this->session->userdata('logged_in')) {
 			$this->userIsLoggedIn();
 		} else {
 			redirect(base_url());
@@ -23,7 +23,8 @@ class User extends CI_Controller {
 				'email'		=> $this->input->post("email"),
 				'city'		=> $this->input->post("city"),
 				'country'	=> $this->input->post("country"),
-				'birthdate'	=> $this->input->post("birthdate")
+				'birthdate'	=> $this->input->post("birthdate"),
+				'avatar'	=> base_url().'uploads/default.jpg'
 			);
 			
 			$request = $this->user_model->adduser($userdata);
@@ -67,10 +68,9 @@ class User extends CI_Controller {
 	}
 	
 	public function logout() {
-		//header('Location:http://localhost/hackathon');
-		$this->session->set_userdata('logged_in', FALSE);
-		$this->session->sess_destroy();
-		
+		if($this->session->userdata('logged_in')) {
+			$this->session->sess_destroy();
+		}
 		redirect(base_url());
 		
 	}

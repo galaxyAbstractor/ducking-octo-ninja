@@ -43,11 +43,12 @@ class Listings_model extends CI_Model {
 			$query = $this->db->get();
 			return $query->result();
 		} else {
-			$this->db->select("available.id AS aid, username, conversationSubject, text", false);
+			$this->db->select("available.id AS aid, username, conversationSubject, text, avatar", false);
 			$this->db->from("available");
 			$this->db->join("users", "users.ID = available.user");
 			$this->db->where("available.id", $id);
 			$query = $this->db->get();
+			//var_dump($query->result());
 			return $query->result();
 		}
 	}

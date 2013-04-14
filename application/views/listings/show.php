@@ -14,7 +14,9 @@
                                                                         <h2><?php echo $item->username ?></h2>
                                                                          <?php echo $item->conversationSubject ?>
                                                                          <br>
+                                                                         
                                                                          <div align="left">
+                                                                         <div id="listingpic"><img src='<?php echo $item->avatar; ?>'></div>
 	                                                                         <?php echo $item->text ?>
 	                                                                         
 	                                                                         <a href="<?php echo base_url()?>listings/book/<?php echo $item->aid?>" class="btn btn-primary">Book appointment</a>

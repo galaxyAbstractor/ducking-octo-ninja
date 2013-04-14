@@ -7,7 +7,8 @@ class Usersettings_model extends CI_Model {
 		$this->load->database();
 	}
 	
-	function set($user, $data) {
+	function update() {
+		$user = $this->session->userdata('username');
 		
 	}
 	
@@ -23,12 +24,16 @@ class Usersettings_model extends CI_Model {
 		}
 	}
 	
+	
+	
 	function setAvatar($path) {
 		$user = $this->session->userdata('username');
 		
 		$avatar = array('avatar' => '././uploads/'.$path);
 		$this->db->where('username', $user);
 		$this->db->update('users', $avatar);
+		
+		$this->session->set_userdata('avatar', '././uploads/'.$path);
 		
 		redirect(base_url().'usersettings');
 	}
