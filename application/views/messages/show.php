@@ -31,9 +31,11 @@
                                                                      </div>
                                                                         </div>
                                                                     </div>
+
                                                                      </div>
                                                                          <br>
                                                                         <?php endforeach;?>
+                                                                         <a href="<?php echo base_url()?>messages/reply/<?php echo $message[count($message)-1]->mid?>" class="btn btn-primary">Reply</a>
                                                            
                                                         </div>
                                                         <div class="span2" id="userinfo">

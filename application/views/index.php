@@ -4,7 +4,7 @@
 				<div class="row">
 
 					<div class="span12" id="content">
-						<div class="row">
+						<div class="row" id="lol">
 							<div class="span10" id="innercontent">
 							</div>
 							<div class="span2" id="userinfo">

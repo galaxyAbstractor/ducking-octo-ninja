@@ -29,5 +29,19 @@ class Messages extends CI_Controller {
 		}
 	}
 
+	public function reply($id) {
+		$this->load->view("header");
+		$this->load->view("menu");
+		if($this->input->message){
+			$this->message_model->addMessage($this->input->mid, $this->input->message);
+		} else {
+			if(!$this->session->userdata('logged_in')) {
+				redirect(base_url());
+			} else {
+				$this->load->view("messages/reply", array("mid" => $id));
+			}
+		}
+	}
+
 }
 ?>

@@ -78,6 +78,11 @@ class Message_model extends CI_Model {
 
 		return $messages;
 	}
+
+	function addMessage($parent, $message){
+		$data = array("parent" => $parent, "content" => $message, "date" => time());
+		$this->db->insert('messages', $data);
+	}
 }
 
 ?>

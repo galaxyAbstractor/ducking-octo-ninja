@@ -1,5 +1,8 @@
 window.addEventListener('popstate', function(event) {
-	$("#innercontent").load(location.pathname+" #innercontent");
+	$("#innercontent").load(location.pathname+" #innercontent", function(){
+		$(this).children(':first').unwrap();
+	});
+
 	bindLinks();
 	CKEDITOR.replace( 'ckeditor' )
 });
@@ -11,9 +14,12 @@ $(document).ready(function() {
 
 function changePage(page){
 	$("#innercontent").load(page+" #innercontent", function(){
+		$(this).children(':first').unwrap();
 		bindLinks();
 		CKEDITOR.replace( 'ckeditor' )
 	});
+
+ 
 	history.pushState(null, null, page);
 }
 
