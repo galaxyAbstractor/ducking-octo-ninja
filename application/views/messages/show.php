@@ -8,11 +8,30 @@
                                                         <div class="span10" id="innercontent">
                                                              
                                                                         <?php
+                                                                                echo "<h2>".$message[0]->conversationSubject."</h2>";
                                                                                 foreach ($message as $item):
                                                                         ?>
                                                                        
-                                                                        <h2><?php echo $item->conversationSubject ?></h2>
+                                                                        <div class="message span10">
+                                                                            <div class="row messageinfo">
+                                                                                <?php echo $item->date ?>
+                                                                            </div>
+                                                                            <div class="row">
+                                                                            <div class="span2">
+                                                                                <div class="messagepic">
+                                                                                    
+                                                                                    </div>
+                                                                                    <div class="messagename">
+                                                                                        <?php echo $item->author ?>
+                                                                                    </div>
+                                                                            </div>
+                                                                            <div class="span8">
+                                                                                <div class="messagecontent">
                                                                          <?php echo $item->content ?>
+                                                                     </div>
+                                                                        </div>
+                                                                    </div>
+                                                                     </div>
                                                                          <br>
                                                                         <?php endforeach;?>
                                                            

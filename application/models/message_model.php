@@ -10,7 +10,7 @@ class Message_model extends CI_Model {
 	function listmessages($uid) {
 		$this->db->from("messages");
 		$this->db->join("messages_users", "messages.id = messages_users.mid");
-		$this->db->join("users", "messages_users.from = users.id");
+		$this->db->join("users", "messages_users.author = users.id");
 		$this->db->join("available", "available.id = messages.aid");
 		$this->db->where("messages_users.to", $uid);
 		$this->db->where(array('messages.parent' => NULL));
@@ -21,7 +21,7 @@ class Message_model extends CI_Model {
 	function hasUnread($uid){
 		$this->db->from("messages");
 		$this->db->join("messages_users", "messages.id = messages_users.mid");
-		$this->db->join("users", "messages_users.from = users.id");
+		$this->db->join("users", "messages_users.author = users.id");
 		$this->db->join("available", "available.id = messages.aid");
 		$this->db->where("messages_users.to", $uid);
 		$this->db->where("messages_users.read", 0);
@@ -35,11 +35,48 @@ class Message_model extends CI_Model {
 	}
 
 	function getMessage($mid) {
+		$this->db->select("fromu.username AS author, tou.username AS touser, available.conversationSubject, content, mid, messages.date", false);
 		$this->db->from("messages");
 		$this->db->join("available", "available.id = messages.aid");
+		$this->db->join("messages_users", "messages.id = messages_users.mid");
+		$this->db->join("users AS fromu", "fromu.id = messages_users.author");
+		$this->db->join("users AS tou", "tou.id = messages_users.to");
 		$this->db->where("messages.id", $mid);
+		$this->db->group_by("messages_users.author");
 		$query = $this->db->get();
-		return $query->result();
+
+
+		$messages = array();
+		foreach ($query->result() as $row){
+			$messages[] = $row;
+
+			$parent = $row->mid;
+			while(true) {
+				$this->db->select("fromu.username AS author, tou.username AS touser, available.conversationSubject, content, mid, messages.date", false);
+				$this->db->from("messages");
+				$this->db->join("available", "available.id = messages.aid");
+				$this->db->join("messages_users", "messages.id = messages_users.mid");
+				$this->db->join("users AS fromu", "fromu.id = messages_users.author");
+				$this->db->join("users AS tou", "tou.id = messages_users.to");
+				$this->db->where("messages.parent", $parent);
+				$this->db->group_by("messages_users.author");
+				$subquery = $this->db->get();
+				$subresult = $subquery->result();
+				if(!empty($subresult)){
+					foreach ($subresult as $row1){
+						$messages[] = $row1;
+						$parent = $row1->mid;
+					}
+					continue;
+
+				} else {
+					break;
+				}
+			}
+
+		}
+
+		return $messages;
 	}
 }
 
