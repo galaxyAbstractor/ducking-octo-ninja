@@ -24,7 +24,7 @@ class User extends CI_Controller {
 				'city'		=> $this->input->post("city"),
 				'country'	=> $this->input->post("country"),
 				'birthdate'	=> $this->input->post("birthdate"),
-				'avatar'	=> base_url().'uploads/default.jpg'
+				'avatar'	=> 'uploads/default.jpg'
 			);
 			
 			$request = $this->user_model->adduser($userdata);
