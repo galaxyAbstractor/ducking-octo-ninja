@@ -31,7 +31,8 @@ body {
 	min-height: 400px;
 }
 
-#userinfo {
+#userinfo a {
+	width: 70%;
 }
 
 #userinfo input {

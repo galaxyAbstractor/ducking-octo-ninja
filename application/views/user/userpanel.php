@@ -4,8 +4,7 @@
 <div id="profilename">
 	<?php echo $username ?>
 </div>
-<a href="<?php echo base_url() ?>user/logout" class="btn btn-primary">Log out</a>
-<br>
+
 <a href="<?php echo base_url() ?>listings/addlisting" class="btn btn-primary">Add listing</a>
 <br>
 
@@ -18,4 +17,7 @@
 <?php } else { ?>
 	<a href="<?php echo base_url() ?>messages" class="btn btn-primary">Messages</a>
 <?php } ?>
+<br><br>
+<a href="<?php echo base_url() ?>user/logout" class="btn btn-primary">Log out</a>
+
 
