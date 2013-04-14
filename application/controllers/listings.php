@@ -58,20 +58,20 @@ class Listings extends CI_Controller {
 	}
 
 	public function book($aid = null) {
-		if(is_null($aid)) {
-			redirect(base_url());
-		} else {
+		
 		if($this->input->post("submit") && $this->session->userdata('logged_in')){
+			$this->load->model('message_model');
+			$this->message_model->addMessage(null, $this->input->post("aid"), $this->input->post("message"), $this->session->userdata('uid'));
+		} else {
+			$this->load->view("header");
+			$this->load->view("menu");
+			if(!$this->session->userdata('logged_in')) {
+				redirect(base_url().'/');
 			} else {
-				$this->load->view("header");
-				$this->load->view("menu");
-				if(!$this->session->userdata('logged_in')) {
-					redirect(base_url().'/');
-				} else {
-					$this->load->view("listings/book", array('userinfo' => $this->load->view("user/userpanel",array("username" => $this->session->userdata('username')), true), "aid" => $aid));
-				}
+				$this->load->view("listings/book", array('userinfo' => $this->load->view("user/userpanel",array("username" => $this->session->userdata('username')), true), "aid" => $aid));
 			}
 		}
+	
 	}
 
 	public function my(){

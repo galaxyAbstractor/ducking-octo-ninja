@@ -29,16 +29,17 @@ class Messages extends CI_Controller {
 		}
 	}
 
-	public function reply($id) {
+	public function reply($mid, $aid, $top) {
 		$this->load->view("header");
 		$this->load->view("menu");
-		if($this->input->message){
-			$this->message_model->addMessage($this->input->mid, $this->input->message);
+		if($this->input->post("message")){
+			$this->message_model->addMessage($this->input->post("mid"), $this->input->post("aid"), $this->input->post("message"), $this->session->userdata('uid'));
+			redirect(base_url()."messages/show/".$this->input->post("top"));
 		} else {
 			if(!$this->session->userdata('logged_in')) {
 				redirect(base_url());
 			} else {
-				$this->load->view("messages/reply", array("mid" => $id));
+				$this->load->view("messages/reply", array("mid" => $mid, "aid" => $aid, "top" => $top));
 			}
 		}
 	}

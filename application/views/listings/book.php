@@ -9,8 +9,9 @@
                                                               <?php
                                                                     echo form_open(base_url().'listings/book');
                                                                     echo form_label('Message', 'message');
-                                                                    echo form_textarea(array('name' => 'message', 'required' => 'required',  'class' => 'ckeditor', 'id' => 'ckeditor'));
+                                                                    echo form_textarea(array('name' => 'message',  'class' => 'ckeditor', 'id' => 'ckeditor'));
                                                                     echo form_hidden("aid", $aid);
+                                                                    
                                                                     echo "<br>";
                                                                     echo form_submit(array('name' => 'submit', 'value' => 'Send message', "class" => "btn btn-primary"));
                                                                     echo form_close();

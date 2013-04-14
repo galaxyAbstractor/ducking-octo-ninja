@@ -35,7 +35,7 @@
                                                                      </div>
                                                                          <br>
                                                                         <?php endforeach;?>
-                                                                         <a href="<?php echo base_url()?>messages/reply/<?php echo $message[count($message)-1]->mid?>" class="btn btn-primary">Reply</a>
+                                                                         <a href="<?php echo base_url()?>messages/reply/<?php echo $message[count($message)-1]->mid?>/<?php echo $message[count($message)-1]->aid?>/<?php echo $message[0]->mid?>" class="btn btn-primary">Reply</a>
                                                            
                                                         </div>
                                                         <div class="span2" id="userinfo">
