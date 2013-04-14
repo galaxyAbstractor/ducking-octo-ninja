@@ -8,6 +8,7 @@ class Message_model extends CI_Model {
 	}
 	
 	function listmessages($uid) {
+		$this->db->select("messages.id AS mid, users.username AS username, available.conversationSubject AS conversationSubject", false);
 		$this->db->from("messages");
 		$this->db->join("messages_users", "messages.id = messages_users.mid");
 		$this->db->join("users", "messages_users.author = users.id");
@@ -15,7 +16,29 @@ class Message_model extends CI_Model {
 		$this->db->where("messages_users.to", $uid);
 		$this->db->where(array('messages.parent' => NULL));
 		$query = $this->db->get();
-		return $query->result();
+		
+		$messages = array();
+		foreach ($query->result() as $row) {
+			
+			$replies = $this->getMessage($row->mid, false);
+
+			foreach ($replies as $reply) {
+				if($reply->read == 0){
+					$row->hasunread = true;
+					$messages[] =$row;
+					break;
+				} else {
+					$row->hasunread = false;
+					$messages[] =$row;
+					break;
+				}
+			}
+					
+		}
+
+		return $messages;
+
+		
 	}
 
 	function hasUnread($uid){
@@ -34,9 +57,9 @@ class Message_model extends CI_Model {
 		}
 	}
 
-	function getMessage($mid) {
+	function getMessage($mid, $markread = true) {
 
-		$this->db->select("fromu.username AS author, tou.username AS touser, available.conversationSubject, content, mid, messages.date, available.id AS aid, fromu.avatar", false);
+		$this->db->select("fromu.username AS author, tou.username AS touser, available.conversationSubject, content, mid, messages.date, available.id AS aid, fromu.avatar, messages_users.read", false);
 		$this->db->from("messages");
 		$this->db->join("available", "available.id = messages.aid");
 		$this->db->join("messages_users", "messages.id = messages_users.mid");
@@ -50,13 +73,15 @@ class Message_model extends CI_Model {
 		$messages = array();
 		foreach ($query->result() as $row){
 			$messages[] = $row;
-			$nd = array("read" => 1);
-			$this->db->where("mid" , $row->mid);
-			$this->db->where("to" , $this->session->userdata('uid'));
-			$this->db->update("messages_users", $nd);
+			if($markread){
+				$nd = array("read" => 1);
+				$this->db->where("mid" , $row->mid);
+				$this->db->where("to" , $this->session->userdata('uid'));
+				$this->db->update("messages_users", $nd);
+			}
 			$parent = $row->mid;
 			while(true) {
-				$this->db->select("fromu.username AS author, tou.username AS touser, available.conversationSubject, content, mid, messages.date, available.id AS aid, fromu.avatar", false);
+				$this->db->select("fromu.username AS author, tou.username AS touser, available.conversationSubject, content, mid, messages.date, available.id AS aid, fromu.avatar, messages_users.read", false);
 
 				$this->db->from("messages");
 				$this->db->join("available", "available.id = messages.aid");
@@ -69,10 +94,12 @@ class Message_model extends CI_Model {
 				$subresult = $subquery->result();
 				if(!empty($subresult)){
 					foreach ($subresult as $row1){
-						$nd = array("read" => 1);
-						$this->db->where("mid" , $row1->mid);
-						$this->db->where("to" , $this->session->userdata('uid'));
-						$this->db->update("messages_users", $nd);
+						if($markread){
+							$nd = array("read" => 1);
+							$this->db->where("mid" , $row1->mid);
+							$this->db->where("to" , $this->session->userdata('uid'));
+							$this->db->update("messages_users", $nd);
+						}
 						$messages[] = $row1;
 						$parent = $row1->mid;
 					}
@@ -84,7 +111,7 @@ class Message_model extends CI_Model {
 			}
 
 		}
-		var_dump($messages);
+		
 		return $messages;
 	}
 

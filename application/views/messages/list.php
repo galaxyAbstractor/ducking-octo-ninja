@@ -16,14 +16,16 @@
                                                                 </thead>
                                                                 <tbody>
                                                                         <?php
-                                                                                foreach ($messages as $item):
+                                                                                foreach($messages as $item):
+
                                                                         ?>
 
-                                                                        <tr onClick="changePage('<?php echo base_url()?>messages/show/<?php echo $item->mid?>')">
+                                                                        <tr <?php  if($item->hasunread) echo 'class="error" ' ?> onClick="changePage('<?php echo base_url()?>messages/show/<?php echo $item->mid?>')">
                                                                                 <td><?php echo $item->username ?></td>
                                                                                 <td><?php echo $item->conversationSubject ?></td>
                                                                         </tr>
-                                                                        <?php endforeach;?>
+                                                                        <?php 
+                                                                        endforeach;?>
                                                                 </tbody>
                                                         </table>
                                                         </div>
