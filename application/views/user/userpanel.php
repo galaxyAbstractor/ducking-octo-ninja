@@ -1,7 +1,7 @@
 <div id="profilepic">
 <img src='<?php 
 			$pic = $this->session->userdata('avatar');
-			echo $pic;
+			echo base_url().$pic;
 			
 			?>'>
 </div>

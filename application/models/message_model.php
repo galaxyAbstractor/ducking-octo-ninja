@@ -84,7 +84,7 @@ class Message_model extends CI_Model {
 			}
 
 		}
-		var_dump($messages);
+
 		return $messages;
 	}
 
