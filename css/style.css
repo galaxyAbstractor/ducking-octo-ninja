@@ -9,6 +9,10 @@ body {
 	font-family: 'Open Sans', sans-serif;
 }
 
+.userpanel {
+	witdth: 80% !important;
+}
+
 #mainpage {
 	position: relative;
 	top:40px;
